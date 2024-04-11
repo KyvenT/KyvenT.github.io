@@ -3,6 +3,24 @@ a:link {
     font-family: "Arial Black", Gadget, sans-serif;
 	font-size: 20px;
 }
+a:visited {
+    color: 808080;
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 20px;
+}
+a:hover {
+    color: 808080;
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 20px;
+    text-decoration: underline solid rgb(0, 0, 0);
+}
+a:active {
+    color: 808080;
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 20px;
+    text-decoration: underline solid rgb(0, 0, 0);
+}
+
 body {
 	background-color: C0C0C0;
     font-family: "Arial Black", Gadget, sans-serif;
