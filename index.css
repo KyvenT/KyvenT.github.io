@@ -1,21 +1,21 @@
 a:link {
-    color: 808080;
+    color: 000000;
     font-family: "Arial Black", Gadget, sans-serif;
 	font-size: 20px;
 }
 a:visited {
-    color: 808080;
+    color: 000000;
     font-family: "Arial Black", Gadget, sans-serif;
     font-size: 20px;
 }
 a:hover {
-    color: 808080;
+    color: 000000;
     font-family: "Arial Black", Gadget, sans-serif;
     font-size: 20px;
     text-decoration: underline solid rgb(0, 0, 0);
 }
 a:active {
-    color: 808080;
+    color: 000000;
     font-family: "Arial Black", Gadget, sans-serif;
     font-size: 20px;
     text-decoration: underline solid rgb(0, 0, 0);
