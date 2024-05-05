@@ -1,29 +1,21 @@
-a:link {
-    color: black;
-    font-family: "Arial Black", Gadget, sans-serif;
-	font-size: 20px;
+#homeLink {
+    background-color: grey;
 }
-a:visited {
-    color: black;
+#homeLink a {
+    color: white;
     font-family: "Arial Black", Gadget, sans-serif;
-    font-size: 20px;
+    font-size: 40px;
+    letter-spacing: 2px;
+    word-spacing: 4px;
 }
-a:hover {
-    color: black;
-    font-family: "Arial Black", Gadget, sans-serif;
-    font-size: 20px;
-    text-decoration: underline solid rgb(0, 0, 0);
-}
-a:active {
-    color: black;
-    font-family: "Arial Black", Gadget, sans-serif;
-    font-size: 20px;
-    text-decoration: underline solid rgb(0, 0, 0);
-}
-
 body {
-	background-color: #C0C0C0;
+	background-color: #414141;
     font-family: "Arial Black", Gadget, sans-serif;
 	font-size: 16px;
+    color: white;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
+
 

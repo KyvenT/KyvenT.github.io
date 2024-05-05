@@ -1,12 +1,46 @@
 <!DOCTYPE html>
-<html>
-<link rel="stylesheet" type="text/css" href="index.css">
-<head>
-<title>kyven's personal website</title>
-</head>
-<body>
-<div id="home link">
-<a href="https://kyvent.github.io/">kyven tran</a>
-</div>
-</body>
+<html lang="en">
+    <head>
+        <title>kyven's personal website</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="index.css">
+        <script src="probabilitycalc.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body>
+        <div id="homeLink">
+        <h1><a href="https://kyvent.github.io/">kyven tran</a></h1>
+        </div>
+        <h3>Probability Calculator</h3>
+        <div id="distrSelect">
+            <label for="distributionSelect">Probability Distribution</label>
+            <select name="distributionSelect" id="distributionSelect">
+                <option value="Binomial">Binomial</option>
+                <option value="Poisson">Poisson</option>
+                <option value="Normal">Normal</option>
+            </select>
+        </div>
+        <div id="binomialCalc">
+            <p>Parameters</p>
+            <label for="n">n = </label>
+            <input type="text" maxlength="10" id="n">
+            <label for="p"> p = </label>
+            <input type="text" maxlength="10" id="p">  
+            <button id="calculateBinomialButton">Calculate</button>
+        </div>
+        <div id="poissonCalc">
+            <p>Parameters</p>
+            <label for="mean">mean = </label>
+            <input type="text" maxlength="10" id="mean">
+            <button id="calculatePoissonButton">Calculate</button>
+        </div>
+        <div id="normalCalc">
+            <p>Parameters</p>
+            <label for="mean">mean = </label>
+            <input type="text" maxlength="10" id="mean">
+            <label for="variance"> variance = </label>
+            <input type="text" maxlength="10" id="variance">
+            <button id="calculateNormalButton">Calculate</button>
+        </div>
+    </body>
 </html>
