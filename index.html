@@ -6,6 +6,9 @@
         <link rel="stylesheet" type="text/css" href="index.css">
         <script src="probabilitycalc.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- Chart.js CDN -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
     </head>
     <body>
         <div id="homeLink">
@@ -20,27 +23,34 @@
                 <option value="Normal">Normal</option>
             </select>
         </div>
-        <div id="binomialCalc">
-            <p>Parameters</p>
-            <label for="n">n = </label>
-            <input type="text" maxlength="10" id="n">
-            <label for="p"> p = </label>
-            <input type="text" maxlength="10" id="p">  
-            <button id="calculateBinomialButton">Calculate</button>
+        <div id="parameterInput">
+            <div id="binomialCalc">
+                <p>Parameters</p>
+                <label for="n">n = </label>
+                <input type="number" maxlength="10" id="n">
+                <label for="p"> p = </label>
+                <input type="number" maxlength="10" id="p">  
+                <button id="calculateBinomialButton">Calculate</button>
+            </div>
+            <div id="poissonCalc">
+                <p>Parameters</p>
+                <label for="mean">mean = </label>
+                <input type="number" maxlength="10" id="mean">
+                <button id="calculatePoissonButton">Calculate</button>
+            </div>
+            <div id="normalCalc">
+                <p>Parameters</p>
+                <label for="mean">mean = </label>
+                <input type="number" maxlength="10" id="mean">
+                <label for="variance"> variance = </label>
+                <input type="number" maxlength="10" id="variance">
+                <button id="calculateNormalButton">Calculate</button>
+            </div>
         </div>
-        <div id="poissonCalc">
-            <p>Parameters</p>
-            <label for="mean">mean = </label>
-            <input type="text" maxlength="10" id="mean">
-            <button id="calculatePoissonButton">Calculate</button>
-        </div>
-        <div id="normalCalc">
-            <p>Parameters</p>
-            <label for="mean">mean = </label>
-            <input type="text" maxlength="10" id="mean">
-            <label for="variance"> variance = </label>
-            <input type="text" maxlength="10" id="variance">
-            <button id="calculateNormalButton">Calculate</button>
+        <div id="distributionGraph" style="width: 800px;">
+            <canvas id="pdf"></canvas>
+
+            <script type="module" src="pdfgrapher.js"></script>
         </div>
     </body>
 </html>

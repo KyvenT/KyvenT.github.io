@@ -20,8 +20,6 @@ function chooseDistribution() {
         case "Binomial":
             var binomialArea = document.getElementById("binomialCalc");
             binomialArea.style.display = 'block';
-            var normalArea = document.getElementById("normalCalc");
-            normalArea.style.display = 'none';
             break;
         case "Poisson":
             var poissonArea = document.getElementById("poissonCalc");
