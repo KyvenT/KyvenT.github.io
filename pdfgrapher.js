@@ -1,29 +1,38 @@
-import Chart from 'chart.js/auto'
+const xValues = [];
+const pdfValues = [];
+graphBinomial();
+// Wait for the DOM to be fully loaded before executing the code
+document.addEventListener('DOMContentLoaded', function () {
+  // Get a reference to the canvas element
+  var chart = document.getElementById('pdf').getContext('2d');
 
-(async function() {
-    const data = [
-      { year: 2010, count: 10 },
-      { year: 2011, count: 20 },
-      { year: 2012, count: 15 },
-      { year: 2013, count: 25 },
-      { year: 2014, count: 22 },
-      { year: 2015, count: 30 },
-      { year: 2016, count: 28 },
-    ];
-  
-    new Chart(
-      document.getElementById('pdf'),
-      {
-        type: 'bar',
-        data: {
-          labels: data.map(row => row.year),
-          datasets: [
-            {
-              label: 'Acquisitions by year',
-              data: data.map(row => row.count)
-            }
-          ]
-        }
-      }
-    );
-  })();
+  // Create the chart
+  var myChart = new Chart(chart, {
+    type: 'line',
+    data: {
+        labels: xValues,
+        datasets: [{
+            label: 'Probability Density',
+            data: pdfValues,
+            pointRadius: 1,
+            fill: true
+        }]
+    },
+  });
+});
+
+function graphBinomial() {
+  var n = 10;
+  var p = 0.5;
+  for (let x = 0; x <= n; x++) {
+      xValues.push(x);
+      pdfValues.push(((factorial(n))/(factorial(n - x) * factorial(x))) * (p**x) * ((1 - p)**(n - x)));
+  }
+}
+
+function factorial(x) {
+  if (x == 0 || x == 1) {
+      return 1;
+  }
+  return x * factorial(x - 1);
+}
