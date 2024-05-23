@@ -22,3 +22,9 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+#parameterInput, #distrSelect {
+    padding: 0 5px 10px;
+}
+#parameterInput:hover, #distrSelect:hover {
+    background-color: #2a2a2a;
+}
