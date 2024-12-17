@@ -6,54 +6,73 @@
         <link rel="stylesheet" type="text/css" href="index.css">
         <script src="probabilitycalc.js"></script>
         <!--<script src="pdfgrapher.js"></script>-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- Chart.js CDN -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
     <body>
-        <header id="homeLink">
-            <h1><a href="https://kyvent.github.io/">kyven tran</a></h1>
-        </header>
+        <nav id="navbar">
+            <ul>
+                <li class="leftmost_in_navbar"><a href="#distribution-selection-wrapper">probability calculator</a></li>
+                <li><a href="#projects">projects</a></li>
+                <li><a href="#contact-me">contact me</a></li>
+            </ul>
+        </nav>
         <main>
-            <h3>Probability Calculator</h3>
-            <div id="distrSelect">
-                <label for="distributionSelect">Probability Distribution</label>
-                <select name="distributionSelect" id="distributionSelect">
-                    <option value="Binomial">Binomial</option>
-                    <option value="Poisson">Poisson</option>
-                    <option value="Normal">Normal</option>
-                </select>
-            </div>
-            <div id="parameterInput">
-                <div id="binomialCalc">
-                    <p>Parameters</p>
-                    <label for="nBinomial">n = </label>
-                    <input type="number" maxlength="10" id="nBinomial">
-                    <label for="pBinomial"> p = </label>
-                    <input type="number" maxlength="10" id="pBinomial">  
-                    <button id="calculateBinomialButton">Calculate</button>
+            <div class="wrapper">
+                <div class="probability-calculator-wrapper">   
+                    <h3 class="title">Probability Calculator</h3>
+                    <div id="distribution-selection-wrapper">
+                        <label for="distribution-selection-box">Probability Distribution</label>
+                        <select name="distribution-selection-box" id="distribution-selection-box">
+                            <option value="Binomial">Binomial</option>
+                            <option value="Poisson">Poisson</option>
+                            <option value="Normal">Normal</option>
+                        </select>
+                    </div>
+                    <div id="parameter-input-wrapper">
+                        <div id="binomial-parameter-input-wrapper">
+                            <p>Parameters</p>
+                            <label for="nBinomial">n = </label>
+                            <input type="number" maxlength="10" id="nBinomial">
+                            <br>
+                            <label for="pBinomial"> p = </label>
+                            <input type="number" maxlength="10" id="pBinomial"> 
+                            <br> 
+                            <button id="calculateBinomialButton" class="calculateButton">Calculate</button>
+                        </div>
+                        <div id="poisson-parameter-input-wrapper">
+                            <p>Parameters</p>
+                            <label for="meanPoisson">mean = </label>
+                            <input type="number" maxlength="10" id="meanPoisson">
+                            <br>
+                            <button id="calculatePoissonButton" class="calculateButton">Calculate</button>
+                        </div>
+                        <div id="normal-parameter-input-wrapper">
+                            <p>Parameters</p>
+                            <label for="meanNormal">mean = </label>
+                            <input type="number" maxlength="10" id="meanNormal">
+                            <br>
+                            <label for="varianceNormal"> variance = </label>
+                            <input type="number" maxlength="10" id="varianceNormal">
+                            <br>
+                            <button id="calculateNormalButton" class="calculateButton">Calculate</button>
+                        </div>
+                    </div>
+                    <div id="results">
+                        <h5>Results</h5>
+                        <p>E[X] = <span id="expectedValueResult"></span></p>
+                        <p id="varianceResult">Var[X] = </p>
+                    </div>
+                    <div id="distributionGraph">
+                        <canvas id="pdf"></canvas>
+                    </div>
                 </div>
-                <div id="poissonCalc">
-                    <p>Parameters</p>
-                    <label for="meanPoisson">mean = </label>
-                    <input type="number" maxlength="10" id="meanPoisson">
-                    <button id="calculatePoissonButton">Calculate</button>
-                </div>
-                <div id="normalCalc">
-                    <p>Parameters</p>
-                    <label for="meanNormal">mean = </label>
-                    <input type="number" maxlength="10" id="meanNormal">
-                    <label for="varianceNormal"> variance = </label>
-                    <input type="number" maxlength="10" id="varianceNormal">
-                    <button id="calculateNormalButton">Calculate</button>
-                </div>
-            </div>
-            <div id="results">
-                <h5>Results for Binomial Distribution</h5>
-            </div>
-            <div id="distributionGraph">
-                <canvas id="pdf"></canvas>
+                <div id="projects">
+                    <h3 class="title">Projects</h3>
+                     
+                </div> 
             </div>
         </main>
     </body>

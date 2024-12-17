@@ -1,6 +1,6 @@
 const xValues = [];
 const pdfValues = [];
-var chart;
+let chart;
 
 // Onload functions 
 window.onload = function() {
@@ -10,70 +10,73 @@ window.onload = function() {
 // Sets up listeners
 function prepareListeners() {
     firstHide();
-    var distributionSelect = document.getElementById("distributionSelect");
+    let distributionSelect = document.getElementById("distribution-selection-box");
     distributionSelect.addEventListener("input", chooseDistribution);
-    var binomialCalcButton = document.getElementById("calculateBinomialButton")
+    let binomialCalcButton = document.getElementById("calculateBinomialButton")
     binomialCalcButton.addEventListener("click", graphBinomial);
-    var poissonCalcButton = document.getElementById("calculatePoissonButton");
+    let poissonCalcButton = document.getElementById("calculatePoissonButton");
     poissonCalcButton.addEventListener("click", graphPoisson);
-    var normalCalcButton = document.getElementById("calculateNormalButton");
+    let normalCalcButton = document.getElementById("calculateNormalButton");
     normalCalcButton.addEventListener("click", graphNormal);
 }
 
 // User distribution selection, displays selected distribution parameter inputs
 function chooseDistribution() {
-    var distribution;
-    var selectBox = document.getElementById("distributionSelect");
-    distribution = selectBox.options[selectBox.selectedIndex].value;
+    let selectBox = document.getElementById("distribution-selection-box");
+    let distribution = selectBox.options[selectBox.selectedIndex].value;
     if (chart != null) {
         chart.destroy();
     }
-    document.getElementById("pdf").style.display = 'none';
     hideCalculationAreas();
+    document.getElementById("pdf").style.display = 'none';
     switch(distribution) {
         case "Binomial":
-            var binomialArea = document.getElementById("binomialCalc");
+            let binomialArea = document.getElementById("binomial-parameter-input-wrapper");
             binomialArea.style.display = 'block';
             break;
         case "Poisson":
-            var poissonArea = document.getElementById("poissonCalc");
+            let poissonArea = document.getElementById("poisson-parameter-input-wrapper");
             poissonArea.style.display = 'block';
             break;
         case "Normal":
-            var normalArea = document.getElementById("normalCalc");
+            let normalArea = document.getElementById("normal-parameter-input-wrapper");
             normalArea.style.display = 'block';
             break;
     }
+
 }
 
 // Hides all parameter inputs except for Binomial distribution on first load
 function firstHide() {
-    var poissonArea;
-    poissonArea = document.getElementById("poissonCalc");
+    let poissonArea = document.getElementById("poisson-parameter-input-wrapper");
     poissonArea.style.display = 'none';
-    var normalArea;
-    normalArea = document.getElementById("normalCalc");
+    let normalArea =  document.getElementById("normal-parameter-input-wrapper");
     normalArea.style.display = 'none'; 
+    let resultsArea = document.getElementById("results");
+    resultsArea.style.display = 'none';
+    let graphArea = document.getElementById("distributionGraph");
+    graphArea.style.display = 'none';
 }
 
 // Hides all parameter inputs
 function hideCalculationAreas() {
     graphChart();
-    var binomialArea;
-    binomialArea = document.getElementById("binomialCalc");
+    let binomialArea = document.getElementById("binomial-parameter-input-wrapper");
     binomialArea.style.display = 'none';
-    var poissonArea;
-    poissonArea = document.getElementById("poissonCalc");
+    let poissonArea = document.getElementById("poisson-parameter-input-wrapper");
     poissonArea.style.display = 'none';
-    var normalArea;
-    normalArea = document.getElementById("normalCalc");
+    let normalArea = document.getElementById("normal-parameter-input-wrapper");
     normalArea.style.display = 'none';
+    let resultsArea = document.getElementById("results");
+    resultsArea.style.display = 'none';
+    let graphArea = document.getElementById("distributionGraph");
+    graphArea.style.display = 'none';
 }
 
 // Creates chart with xValues and pdfValues
 function graphChart() {
     // Get a reference to the canvas element
-    var chartElement = document.getElementById('pdf').getContext('2d');
+    let chartElement = document.getElementById('pdf').getContext('2d');
 
     // Create the chart
     chart = new Chart(chartElement, {
@@ -108,14 +111,18 @@ function graphChart() {
         }
     });
     document.getElementById("pdf").style.display = 'block';
+    let resultsArea = document.getElementById("results");
+    resultsArea.style.display = 'block';
+    let graphArea = document.getElementById("distributionGraph");
+    graphArea.style.display = 'block';
 }
 
 
 // ***** CREATING GRAPH FUNCTIONS *****
 // Creates Binomial Graph
 function graphBinomial() {
-    var n = document.getElementById("nBinomial").valueAsNumber;
-    var p = document.getElementById("pBinomial").valueAsNumber;
+    let n = document.getElementById("nBinomial").valueAsNumber;
+    let p = document.getElementById("pBinomial").valueAsNumber;
 
     while (xValues.length > 0) {
         xValues.pop();
@@ -132,11 +139,11 @@ function graphBinomial() {
 
 // Creates Poisson Graph
 function graphPoisson() {
-    var mean = document.getElementById("meanPoisson").valueAsNumber;
-    var areaCalculated = 0;
-    var x;
-    if (Math.floor(mean - (2 * (mean ** (1/2)))) > 0) {
-        x = Math.floor(mean - (2 * (mean ** (1/2))));
+    let mean = document.getElementById("meanPoisson").valueAsNumber;
+    let areaCalculated = 0;
+    let x;
+    if (Math.floor(mean - (2 * (mean ** (0.5)))) > 0) {
+        x = Math.floor(mean - (2 * (mean ** (0.5))));
     } else {
         x = 0;
     }
@@ -157,11 +164,11 @@ function graphPoisson() {
 
 // Creates Normal Graph
 function graphNormal() {
-    var mean = document.getElementById("meanNormal").valueAsNumber;
-    var variance = document.getElementById("varianceNormal").valueAsNumber;
-    var stdDeviation = variance ** (1/2);
-    var x = 100 * (mean - (2 * stdDeviation));
-    var endDrawing = 100 * (mean + (2 * stdDeviation));
+    let mean = document.getElementById("meanNormal").valueAsNumber;
+    let variance = document.getElementById("varianceNormal").valueAsNumber;
+    let stdDeviation = variance ** (0.5);
+    let x = 100 * (mean - (2 * stdDeviation));
+    let endDrawing = 100 * (mean + (2 * stdDeviation));
 
     while (xValues.length > 0) {
         xValues.pop();
@@ -199,16 +206,13 @@ function factorial(x) {
 
 // ***** PROBABILITY DISTRIBUTION FUNCTIONS *****
 // Binomial Probability Distribution Function
-function binomialFunction(n, p, x) {
-    return ((factorial(n))/(factorial(n - x) * factorial(x))) * (p**x) * ((1 - p)**(n - x));
-}
+const binomialFunction = (n, p, x) => ((factorial(n))/(factorial(n - x) * factorial(x))) * (p**x) * ((1 - p)**(n - x));
 
 // Poisson Probability Distribution Function
-function poissonFunction(mean, x) {
-    return ((mean ** x)/(factorial(x))) * (2.71828182845904523536 ** (-1 * mean));
-}
+const poissonFunction = (mean, x) => ((mean ** x)/(factorial(x))) * (Math.E ** (-1 * mean));
 
 // Normal Probability Distribution Functions
-function normalFunction(mean, stdDeviation, x) {
-    return (1 / (stdDeviation * ((2 * 3.1415926535) ** (1/2)))) * (2.71828182845904523536 ** ((-1/2) * ((((x/100) - mean) / stdDeviation) ** 2)));
-}
+const normalFunction = (mean, stdDeviation, x) => (1 / (stdDeviation * ((2 * Math.PI) ** (0.5)))) * 
+                                                    (Math.E ** ((-0.5) * ((((x/100) - mean) / stdDeviation) ** 2)));
+
+
